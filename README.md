@@ -40,4 +40,8 @@ Please see this link for context onboarding: https://en.wikipedia.org/wiki/Conwa
    ./bin/run input/glider_destroying_cthulhu.txt 100
    ```
    Type cmd + c to exit
-   
+
+4. Short demo
+<p align="center">
+  <img src="https://github.com/mukhlishga/conway-game-of-life-java-maven/blob/main/conway-game-of-life-demo.gif" alt="conway-game-of-life-demo" />
+</p>
