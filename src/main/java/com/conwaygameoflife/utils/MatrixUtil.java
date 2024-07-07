@@ -10,13 +10,13 @@ import java.util.stream.Stream;
 public class MatrixUtil {
 
     public static void print(Map<String, List<List<Integer>>> cellMap) {
-        int rowSize = getRowSize(cellMap) + 1;
-        int columnSize = getColumnSize(cellMap) + 1;
+        Integer rowSize = getRowSize(cellMap) + 1;
+        Integer columnSize = getColumnSize(cellMap) + 1;
         List<List<Integer>> aliveCellList = getAliveCellList(cellMap);
 
         char[][] matrix = new char[rowSize][columnSize];
-        for (int r = 0; r < rowSize; r++) {
-            for (int c = 0; c < columnSize; c++) {
+        for (Integer r = 0; r < rowSize; r++) {
+            for (Integer c = 0; c < columnSize; c++) {
                 if (isCellAlive(aliveCellList, List.of(r, c))) {
                     matrix[r][c] = 'O';
                 } else {
@@ -70,7 +70,7 @@ public class MatrixUtil {
             .collect(Collectors.toList());
     }
 
-    public static boolean isCellAlive(List<List<Integer>> aliveCellList, List<Integer> position) {
+    public static Boolean isCellAlive(List<List<Integer>> aliveCellList, List<Integer> position) {
         for (List<Integer> aliveCell : aliveCellList) {
             if (Objects.equals(aliveCell.get(0), position.get(0)) && Objects.equals(aliveCell.get(1), position.get(1))) {
                 return true;

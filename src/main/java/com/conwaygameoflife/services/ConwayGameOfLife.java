@@ -33,8 +33,8 @@ public class ConwayGameOfLife {
         delay(timeout);
     }
 
-    public boolean resizeCellMapIfAliveCellAtBorder() {
-        boolean isCellMapResized = false;
+    public Boolean resizeCellMapIfAliveCellAtBorder() {
+        Boolean isCellMapResized = false;
         while (isAliveCellAtTop() || isAliveCellAtBottom() || isAliveCellAtLeft() || isAliveCellAtRight()) {
             List<List<Integer>> aliveCellList = getAliveCellList(cellMap);
             List<List<Integer>> deadCellList = getDeadCellList(cellMap);
@@ -63,10 +63,10 @@ public class ConwayGameOfLife {
                 }
             }
 
-            Map<String, List<List<Integer>>> updatedCellMap = new HashMap<>();
-            updatedCellMap.put("alive", aliveCellList);
-            updatedCellMap.put("dead", deadCellList);
-            cellMap = updatedCellMap;
+            Map<String, List<List<Integer>>> resizedCellMap = new HashMap<>();
+            resizedCellMap.put("alive", aliveCellList);
+            resizedCellMap.put("dead", deadCellList);
+            cellMap = resizedCellMap;
             isCellMapResized = true;
         }
         return isCellMapResized;
@@ -80,7 +80,7 @@ public class ConwayGameOfLife {
         List<List<Integer>> nextDeadCellList = new ArrayList<>();
 
         for (List<Integer> cell : allCellList) {
-            int neighbors = calculateNeighbors(aliveCellList, cell);
+            Integer neighbors = calculateNeighbors(aliveCellList, cell);
             if ((aliveCellList.contains(cell) && neighbors >= 2 && neighbors <= 3) || (deadCellList.contains(cell) && neighbors == 3)) {
                 nextAliveCellList.add(cell);
             } else {
@@ -94,20 +94,20 @@ public class ConwayGameOfLife {
         cellMap = nextCellMap;
     }
 
-    private boolean isAliveCellAtTop() {
-        return getAliveCellList(cellMap).stream().map(cell -> cell.get(0)).anyMatch(r -> r == 0);
+    private Boolean isAliveCellAtTop() {
+        return getAliveCellList(cellMap).stream().map(cell -> cell.get(0)).anyMatch(row -> row == 0);
     }
 
-    private boolean isAliveCellAtBottom() {
-        return getAliveCellList(cellMap).stream().map(cell -> cell.get(0)).anyMatch(r -> r == getRowSize(cellMap));
+    private Boolean isAliveCellAtBottom() {
+        return getAliveCellList(cellMap).stream().map(cell -> cell.get(0)).anyMatch(row -> row == getRowSize(cellMap));
     }
 
-    private boolean isAliveCellAtLeft() {
-        return getAliveCellList(cellMap).stream().map(cell -> cell.get(1)).anyMatch(c -> c == 0);
+    private Boolean isAliveCellAtLeft() {
+        return getAliveCellList(cellMap).stream().map(cell -> cell.get(1)).anyMatch(column -> column == 0);
     }
 
-    private boolean isAliveCellAtRight() {
-        return getAliveCellList(cellMap).stream().map(cell -> cell.get(1)).anyMatch(c -> c == getColumnSize(cellMap));
+    private Boolean isAliveCellAtRight() {
+        return getAliveCellList(cellMap).stream().map(cell -> cell.get(1)).anyMatch(column -> column == getColumnSize(cellMap));
     }
 
     private Integer calculateNeighbors(List<List<Integer>> aliveCellList, List<Integer> centralCell) {

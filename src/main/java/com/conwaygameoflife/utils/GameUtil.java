@@ -37,9 +37,9 @@ public class GameUtil {
             try {
                 List<List<Integer>> aliveCellList = new ArrayList<>();
                 List<List<Integer>> deadCellList = new ArrayList<>();
-                int r = 0;
+                Integer r = 0;
                 while ((line = br.readLine()) != null) {
-                    int c = 0;
+                    Integer c = 0;
                     for (String s : line.trim().replaceAll("\\s", "").split("")) {
                         if (s.equalsIgnoreCase("O")) {
                             aliveCellList.add(List.of(r, c));
